@@ -251,7 +251,7 @@ Sense::=
   sensorsFind: (namespace, data, args...) ->
     return @_api "post", "sensors/find?namespace=" + namespace, data, args...
 
-  #/ S E N S O R S  &  D A T A #/
+  # S E N S O R S  &  D A T A #
   sensorData: (id, args...) ->
     return @_api "get", "sensors/" + id + "/data", args...
 
@@ -265,12 +265,12 @@ Sense::=
     return @_api "delete", "sensors/" + id + "/data/" + data_id , args...
 
 
-  #/ S E N S O R S  &  E N V I R O N M E N T S #/
+  # S E N S O R S  &  E N V I R O N M E N T S #
   sensorEnvironments: (id, args...) ->
     return @_api "get", "sensors/" + id + "/environment", args...
 
 
-  #/ S E N S O R S  &  D E V I C E S #/
+  # S E N S O R S  &  D E V I C E S #
   sensorDevice: (id, args...) ->
     return @_api "get", "sensors/" + id + "/device", args...
 
@@ -281,7 +281,7 @@ Sense::=
     return @_api "delete", "sensors/" + id + "/device", args...
 
 
-  #/ S E N S O R S  &  S E R V I C E S #/
+  # S E N S O R S  &  S E R V I C E S #
   sensorsAvailableServices: (args...) ->
     return @_api "get", "sensors/services/available", args...
 
@@ -310,7 +310,7 @@ Sense::=
     return @_api "post", "sensors/" + id + "/services/" + service + "/" + method , data, args...
 
 
-  #/ M E T A T A G S #/
+  # M E T A T A G S #
   sensorsMetatags: (args...) ->
     return @_api "get", "sensors/metatags", args...
 
@@ -327,7 +327,7 @@ Sense::=
     return @_api "delete", "sensors/" + id + "/metatags", args...
 
 
-  #/ U S E R S #/
+  # U S E R S #
   currentUsers: (args...) ->
     return @_api "get", "users/current", args...
 
