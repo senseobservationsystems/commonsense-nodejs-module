@@ -1,4 +1,4 @@
-Sense = require '../src/sense'
+Sense = require '../src/commonsense'
 
 sense = new Sense()
 
