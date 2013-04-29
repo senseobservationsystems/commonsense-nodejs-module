@@ -1,0 +1,22 @@
+{
+  "author": "Roemer Vlasveld <roemer@almende.org> (http://www.almende.org)",
+  "name": "commonsense",
+  "description": "Commonsense client API",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/senseobservationsystems/commonsense-nodejs-module.git"
+  },
+  "main": "lib/sense.js",
+  "scripts": {
+    "prepublish": "coffee -o lib -c src/*.coffee"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "coffee-script": ">= 1.6.2"
+  },
+  "keywords": ["commonsense", "sense", "api", "client"]
+}
