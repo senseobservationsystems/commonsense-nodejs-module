@@ -1,119 +1,137 @@
+[![Build Status](https://travis-ci.org/senseobservationsystems/commonsense-nodejs-module.png?branch=master)](https://travis-ci.org/https://travis-ci.org/senseobservationsystems/commonsense-nodejs-module)
+
 # Commonsense Node.js Module
 
-This project is the source for the (upcoming) npm commonsense package.
+Retrieve information from the [CommonSense](http://www.sense-os.nl/commonsense) platform, using asynchronous http calls.
 
-Currently under heavy development.
+This module is under development.
 
-The API mainly follows the one from [Commonsense-javascript-lib](https://github.com/senseobservationsystems/commonsense-javascript-lib), although this is likely to change.
+The API mainly follows the one from [Commonsense-javascript-lib](https://github.com/senseobservationsystems/commonsense-javascript-lib), although the functions names have been changed to reflect a REST-style.
+
+## Install
+
+Commonsense-node is available in NPM:
+
+`npm install commonsense`
+
+To include it in your node project, add `"commonsense"` to your `package.json`.
 
 ## API calls
 
 The following api calls on the Sense object are implemented.
 The calls follow the REST-style with the verbs (create, update, delete) prefixed.
 An index (list) action corresponds with the plural form and a single get with the single form.
-In every call `args...` can be any number of arguments, usually an optional data object and always the next callback function `(error, response) ->` as last argument.
+The callback is of the form `next(err, response)`.
 
 ```coffeescript
   # A U T H E N T I C A T I O N #
-  createSession: (u, p, args...)
-  deleteSession: (args...)
+  createSession: (u, p, next)
+  deleteSession: (next)
 
   # D A T A P R O C E S S O R S #
-  dataProcessors: (args...)
-  dataProcessor: (id, args...)
-  createDataProcessor: (data, args...)
-  updateDataProcessor: (id, data, args...)
-  deleteDataProcessor: (id, args...)
+  dataProcessors: (next)
+  dataProcessor: (id, next)
+  createDataProcessor: (data, next)
+  updateDataProcessor: (id, data, next)
+  deleteDataProcessor: (id, next)
 
   # D A T A  P R O C E S S O R S  &  F I L E S #
-  dataProcessorsFiles: (args...)
-  dataProcessorFile: (filename, args...)
-  createDataProcessorsFile: (filename, data, args...)
-  updateDataProcessorsFile: (filename, data, args...)
-  deleteDataProcessorsFile: (filename, args...)
+  dataProcessorsFiles: (next)
+  dataProcessorFile: (filename, next)
+  createDataProcessorsFile: (filename, data, next)
+  updateDataProcessorsFile: (filename, data, next)
+  deleteDataProcessorsFile: (filename, next)
 
   # D E V I C E S #
-  devices: (args...)
-  device: (id, args...)
-  deviceSensors: (id, args...)
+  devices: (next)
+  device: (id, next)
+  deviceSensors: (id, next)
 
   # E N V I R O N M E N T S #
-  environments: (args...)
-  environment: (id, args...)
-  createEnvironment: (data, args...)
-  updateEnvironment: (id, data, args...)
-  deleteEnvironment: (id, args...)
+  environments: (next)
+  environment: (id, next)
+  createEnvironment: (data, next)
+  updateEnvironment: (id, data, next)
+  deleteEnvironment: (id, next)
 
   # E N V I R O N M E N T S  &  S E N S O R S #
-  environmentSensors: (id, args...)
-  createEnvironmentSensor: (id, data, args...)
-  deleteEnvironmentSensor: (id, sensor, args... )
+  environmentSensors: (id, next)
+  createEnvironmentSensor: (id, data, next)
+  deleteEnvironmentSensor: (id, sensor, next )
 
   # G R O U P S #
-  allGroups: (args...)
-  groups: (args...)
-  group: (id, args...)
-  createGroup: (data, args...)
-  updateGroup: (id, data, args...)
-  deleteGroup: (id, args...)
+  allGroups: (next)
+  groups: (next)
+  group: (id, next)
+  createGroup: (data, next)
+  updateGroup: (id, data, next)
+  deleteGroup: (id, next)
 
   # G R O U P S  &  U S E R S #
-  groupUsers: (id, args...)
-  groupUser: (id, user, args...)
-  createGroupUser: (id, data, args...)
-  updateGroupUser: (id, user, data, args...)
-  deleteGroupUser: (id, user, args...)
+  groupUsers: (id, next)
+  groupUser: (id, user, next)
+  createGroupUser: (id, data, next)
+  updateGroupUser: (id, user, data, next)
+  deleteGroupUser: (id, user, next)
 
   # G R O U P S  &  S E N S O R S #
-  groupSensors: (id, args...)
-  createGroupSensor: (id, data, args... )
-  deleteGroupSensor: (id, sensor, args... )
+  groupSensors: (id, next)
+  createGroupSensor: (id, data, next )
+  deleteGroupSensor: (id, sensor, next )
 
   # S E N S O R S #
-  sensors: (args...)
-  sensor: (id, args...)
-  createSensor: (data, args...)
-  updateSensor: (id, data, args...)
-  deleteSensor: (id, args...)
-  sensorsFind: (namespace, data, args...)
+  sensors: (next)
+  sensor: (id, next)
+  createSensor: (data, next)
+  updateSensor: (id, data, next)
+  deleteSensor: (id, next)
+  sensorsFind: (namespace, data, next)
 
   # S E N S O R S  &  D A T A #
-  sensorData: (id, args...)
-  createSensorData: (id, data, args...)
-  createSensorsData: (data, args...)
-  deleteSensorData: (id, data_id, args...)
+  sensorData: (id, next)
+  createSensorData: (id, data, next)
+  createSensorsData: (data, next)
+  deleteSensorData: (id, data_id, next)
 
   # S E N S O R S  &  E N V I R O N M E N T S #
-  sensorEnvironments: (id, args...)
+  sensorEnvironments: (id, next)
 
   # S E N S O R S  &  D E V I C E S #
-  sensorDevice: (id, args...)
-  createSensorDevice: (id, data, args...)
-  deleteSensorDevice: (id, args...)
+  sensorDevice: (id, next)
+  createSensorDevice: (id, data, next)
+  deleteSensorDevice: (id, next)
 
   # S E N S O R S  &  S E R V I C E S #
-  sensorsAvailableServices: (args...)
-  sensorRunningServices: (id, args...)
-  sensorAvailableServices: (id, args...)
-  createSensorService: (id, data, args...)
-  deleteSensorService: (id, service, args...)
-  sensorServiceMethods: (id, service, args...)
-  sensorServiceLearn: (id, service, data, args...)
-  sensorServiceMethod: (id, service, method, args...)
-  createSensorServiceMethod: (id, service, method, data, args...)
+  sensorsAvailableServices: (next)
+  sensorRunningServices: (id, next)
+  sensorAvailableServices: (id, next)
+  createSensorService: (id, data, next)
+  deleteSensorService: (id, service, next)
+  sensorServiceMethods: (id, service, next)
+  sensorServiceLearn: (id, service, data, next)
+  sensorServiceMethod: (id, service, method, next)
+  createSensorServiceMethod: (id, service, method, data, next)
 
   # M E T A T A G S #
-  sensorsMetatags: (args...)
-  sensorMetatags: (id, args...)
-  createSensorMetatags: (id, data, args...)
-  updateSensorMetatags: (id, data, args...)
-  deleteSensorMetaTags: (id, args...)
+  sensorsMetatags: (next)
+  sensorMetatags: (id, next)
+  createSensorMetatags: (id, data, next)
+  updateSensorMetatags: (id, data, next)
+  deleteSensorMetaTags: (id, next)
 
   # U S E R S #
-  currentUsers: (args...)
-  users: (args...)
-  user: (id, args...)
-  createUser: (args...)
-  updateUser: (id, data, args...)
-  deleteUser: (id, args...)
+  currentUsers: (next)
+  users: (next)
+  user: (id, next)
+  createUser: (next)
+  updateUser: (id, data, next)
+  deleteUser: (id, next)
 ```
+
+## Testing
+
+To test the library, please modify `test/api_urls.coffee` by providing your username and md5 password. *Please rememeber to remove these before a commit*.
+
+Run `npm test` from the commandline to run the tests.
+
+## Contributing

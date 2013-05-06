@@ -1,6 +1,11 @@
 fs = require 'fs'
-
 Sense = require __dirname + '/../src/commonsense'
+
+# Provide your username and md5 password hash
+username = ''
+password_md5 = ''
+
+# No changes needed below this file
 
 String::capitalize = -> @substr(0, 1).toUpperCase() + @substr(1)
 
@@ -9,11 +14,6 @@ String::capitalize = -> @substr(0, 1).toUpperCase() + @substr(1)
 # So no real HTTP calls are performed
 Sense::_api = (method, path, data, next) ->
   return {method: method, path: path, data: data}
-
-# Provide your username and md5 password hash
-username = ''
-password_md5 = ''
-
 
 sense = new Sense()
 
