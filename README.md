@@ -130,8 +130,23 @@ The callback is of the form `next(err, response)`.
 
 ## Testing
 
-To test the library, please modify `test/api_urls.coffee` by providing your username and md5 password. *Please rememeber to remove these before a commit*.
+To test the library, please modify `test/api_urls.coffee` by providing your username and md5 password. **Please rememeber to remove these before a commit**.
 
 Run `npm test` from the commandline to run the tests.
 
 ## Contributing
+
+1. Fork this repository
+2. Clone it on your local machine
+3. Install developer dependencies:<br />
+`npm install`
+4. Create a topic branch:<br />
+`git checkout -d feature`
+5. **Make your changes**
+6. Verify that your changes do not break anything:<br />
+`npm test`
+7. Add tests if you introduced new functionality in `test/`
+8. Push your changes to your fork:<br />
+`git push -u [YOUR_FORK] feature`
+9. Open a pull request describing your changes:<br />
+`git pull-request`
