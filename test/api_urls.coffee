@@ -114,3 +114,4 @@ describe 'Sense API calls', ->
 
   describe 'to Users', ->
     GenericActions 'user'
+    it "should test current user"
