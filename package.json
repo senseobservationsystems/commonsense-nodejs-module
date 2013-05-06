@@ -10,7 +10,8 @@
   },
   "main": "lib/commonsense.js",
   "scripts": {
-    "prepublish": "coffee -o lib -c src/*.coffee"
+    "prepublish": "coffee --compile --output lib/ src/*.coffee",
+    "test": "mocha --compilers coffee:coffee-script --require should --reporter spec"
   },
   "engines": {
     "node": ">= 0.10.0"
@@ -20,8 +21,5 @@
     "coffee-script": ">= 1.6.2",
     "mocha": ">= 1.0.3",
     "should": ">= 0.6.3"
-  },
-  "scripts": {
-    "test": "mocha --compilers coffee:coffee-script --require should --reporter spec"
   }
 }
