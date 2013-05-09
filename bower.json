@@ -1,10 +1,14 @@
 {
-  "name": "commonsense-api",
+  "name": "commonsense",
   "version": "0.0.5",
-  "main": "./lib/commonsense.js",
+  "main": "lib/commonsense.js",
   "ignore": [
     "**/.*",
     "node_modules",
-    "components"
+    "components",
+    "src",
+    "package.json",
+    ".travis.yml",
+    "test"
   ]
 }

@@ -20,6 +20,8 @@ To include it in your node project, add `"commonsense"` to your `package.json`.
 
 ### Bower
 
+`bower install commonsense`
+
 
 ## Usage
 
