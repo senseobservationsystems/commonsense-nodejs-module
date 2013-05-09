@@ -342,4 +342,8 @@ Sense::=
   deleteUser: (id, next) ->
     return @_api "delete", "users/" + id , next
 
-module.exports = exports = Sense
+
+if typeof module is 'undefined'
+  window['Sense'] = Sense
+else
+  module.exports = exports = Sense

@@ -2,7 +2,7 @@
   "author": "Roemer Vlasveld <roemer@almende.org> (http://www.almende.org)",
   "name": "commonsense",
   "description": "Commonsense client API",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "keywords": ["commonsense", "sense", "api", "client"],
   "repository": {
     "type": "git",
