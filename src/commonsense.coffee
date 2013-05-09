@@ -1,8 +1,3 @@
-http  = require 'http'
-https = require 'https'
-qs    = require 'querystring'
-url   = require 'url'
-
 class Sense
 
   constructor: (@session_id = '') ->
@@ -11,16 +6,34 @@ class Sense
 # Build on prototype for speed and memory performance
 Sense::=
   available_methods: ['GET', 'POST', 'DELETE', 'PUT']
+
+
+  _getRequestObject: () ->
+    if window? and window.XMLHttpRequest?
+      return new window.XMLHttpRequest()
+
+    if window? and window.ActiveXObject?
+      try
+        request = new ActiveXObject('Msxml2.XMLHTTP')
+      catch e
+        try
+          request = new ActiveXObject('Microsoft.XMLHTTP')
+        catch e
+
+    XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
+    return new XMLHttpRequest()
+
+
   _api: (method, path, data, next) ->
 
     # create empty data object of none provided
     if typeof(data) isnt 'object'
       next = data
       data = {}
+    data ?= ''
 
     # Create empty callback function if none proviced
     if not next? then next = ->
-
 
     # Check for supported HTTP method
     method = method.toUpperCase()
@@ -30,15 +43,37 @@ Sense::=
     # Prefix the path with /
     path = '/' + path unless path[0] is '/'
 
-    headers = ACCEPT: 'application/json'
-    headers['X-SESSION_ID'] = @session_id if @session_id?
+    headers = ACCEPT: '*'
+    headers['X-SESSION_ID'] = @session_id if @session_id isnt ''
 
-    data ?= ''
+    xhr = @._getRequestObject()
+    xhr.onreadystatechange = =>
+
+      if xhr.readyState == 4
+        res =
+          status: xhr.status
+          data:   xhr.responseText
+          object: {}
+
+        location      = xhr.getResponseHeader 'Location'
+        sid           = xhr.getResponseHeader 'X-SESSION_ID'
+        @session_id   = sid if sid?
+        res.location  = location? if location?
+
+        if res.status in [200, 201, 302]
+          if res.data.trim() isnt ''
+            res.object = JSON.parse res.data
+
+          next null, res
+        else
+          next (new Error "2: API returned non-succesful header."), res
+
     switch method
 
       when 'GET' or 'DELETE'
-        path += qs.stringify data
-        data = ''
+        str = []
+        str.push(encodeURIComponent(key) + "=" + encodeURIComponent(value)) for key, value of data
+        path += '?' + str.join('&')
 
       when 'POST' or 'PUT'
         if typeof(data) is "object"
@@ -49,52 +84,13 @@ Sense::=
       else
         throw new Error "Unrecognized method"
 
-    parsed_url = url.parse(@api_url + path)
-    options =
-      host: parsed_url.host
-      path: path
-      method: method
-      headers: headers
 
-    # Switch protocol implementation
-    protocol = if parsed_url.protocol is 'https' then https else http
-
-    # Notice the fat arrow. This is to keep @ pointing to the Sense object
-    request = protocol.request options, (response) =>
-
-      # Build the object to be passed to the callback next function
-      resp =
-        status:   response.statusCode
-        data:     ""
-        headers:  response.headers
-
-      # Retrieve session id and location headers
-      sid           = response.headers['x-session_id']
-      location      = response.headers.location
-      @session_id   = sid if sid?
-      resp.location = location if location?
-
-      response.on 'error', (e)    -> next e, resp
-      response.on 'data', (chunk) -> resp.data += chunk
-      response.on 'end',          ->
-
-        # Resonse is ended, all data received
-        if resp.status in [200, 201, 302]
-          if resp.data.trim() isnt ''
-            resp.object = JSON.parse resp.data
-          else
-            resp.object = {}
-
-          next null, resp
-        else
-          next (new Error "2: API returned non-succesful header."), resp
-
-    request.on 'error', (e) -> next
-    request.write data
-    request.end()
+    xhr.open method, (@api_url + path), true
+    xhr.setRequestHeader(name, value) for name, value of headers
+    xhr.send data
 
     # Return request object, so client code can overwrite events
-    return request
+    return xhr
 
 
   # CONFIGURATION #

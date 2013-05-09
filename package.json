@@ -16,7 +16,9 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "xmlhttprequest": ">= 1.5.0"
+  },
   "devDependencies": {
     "coffee-script": ">= 1.6.2",
     "mocha": ">= 1.0.3",
