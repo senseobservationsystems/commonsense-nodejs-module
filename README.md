@@ -1,20 +1,43 @@
 [![Build Status](https://travis-ci.org/senseobservationsystems/commonsense-nodejs-module.png?branch=master)](https://travis-ci.org/https://travis-ci.org/senseobservationsystems/commonsense-nodejs-module)
 
-# Commonsense Node.js Module
+*This module is under heavy development.*
 
-Retrieve information from the [CommonSense](http://www.sense-os.nl/commonsense) platform, using asynchronous http calls.
+# Commonsense API module
 
-This module is under development.
+Retrieve information from the [CommonSense](http://www.sense-os.nl/commonsense) platform, using asynchronous http(s) calls.
+This module works for both Node.js as just in the browser. In the browser it depends upon the native `XMLHttpRequest` (or ancient `ActiveXObject` for `IE ≤ 6`) object. When used in Node.js, it uses the [node-XMLHttpRequest](https://github.com/driverdan/node-XMLHttpRequest) package.
 
-The API mainly follows the one from [Commonsense-javascript-lib](https://github.com/senseobservationsystems/commonsense-javascript-lib), although the functions names have been changed to reflect a REST-style.
+This API is heavily inspired by [Commonsense-javascript-lib](https://github.com/senseobservationsystems/commonsense-javascript-lib), although this can be seen as an replacement by providing asynchronous call. The naming convention of [Commonsense-javascript-lib](https://github.com/senseobservationsystems/commonsense-javascript-lib) is changed to a more REST-style.
 
 ## Install
 
+### NPM
 Commonsense-node is available in NPM:
 
 `npm install commonsense`
 
 To include it in your node project, add `"commonsense"` to your `package.json`.
+
+### Bower
+
+
+## Usage
+
+This library can be used within a Node.js application and in the browser.
+
+When available in your project, the following is a typical beginning of a usecase.
+
+````coffeescript
+  sense = new Sense()
+  username = 'some_username'
+  password = 'md5_of_password'
+
+  sense.createSession username, password, (error, response) ->
+    sense.devices (error, response) ->
+      console.log 'Devices:', response.object
+````
+
+Please look at the [examples](examples) for embedding in a [Node.js application](examples/simple.coffee) or a [browser script](examples/simple.html).
 
 ## API calls
 
@@ -127,6 +150,10 @@ The callback is of the form `next(err, response)`.
   updateUser: (id, data, next)
   deleteUser: (id, next)
 ```
+
+## Changelog
+
+See the [changelog](CHANGELOG.md) for details of changes.
 
 ## Testing
 
