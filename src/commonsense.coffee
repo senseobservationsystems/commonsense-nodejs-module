@@ -324,7 +324,7 @@ Sense::=
 
 
   # U S E R S #
-  currentUsers: (next) ->
+  currentUser: (next) ->
     return @_api "get", "users/current", next
 
   users: (next) ->
