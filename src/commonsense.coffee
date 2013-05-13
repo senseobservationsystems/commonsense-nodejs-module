@@ -229,8 +229,8 @@ Sense::=
     return @_api 'delete', 'groups/' + id + '/sensors/' + sensors, next
 
   # S E N S O R S #
-  sensors: (next) ->
-    return @_api "get", "sensors", next
+  sensors: (data, next) ->
+    return @_api "get", "sensors", data, next
 
   sensor: (id, next) ->
     return @_api "get", "sensors/" + id, next
@@ -248,8 +248,8 @@ Sense::=
     return @_api "post", "sensors/find?namespace=" + namespace, data, next
 
   # S E N S O R S  &  D A T A #
-  sensorData: (id, next) ->
-    return @_api "get", "sensors/" + id + "/data", next
+  sensorData: (id, data, next) ->
+    return @_api "get", "sensors/" + id + "/data", data, next
 
   createSensorData: (id, data, next) ->
     return @_api "post", "sensors/" + id + "/data", data, next
