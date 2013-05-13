@@ -1,6 +1,6 @@
 # Version 0.0.6
 - Call `currentUsers` renamed to `currentUser`
-- Calls `sensors` and `sensorData` support `data` argument
+- All calls support a `data` attribute
 
 # Version 0.0.5
 - Package can be used in both Node.js and the browser

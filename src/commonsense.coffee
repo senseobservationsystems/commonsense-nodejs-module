@@ -134,8 +134,8 @@ Sense::=
   dataProcessorsFiles: (data, next) ->
     return @_api 'get', 'dataprocessors/files'
 
-  dataProcessorFile: (filename, next) ->
-    return @_api 'get', 'dataprocessors/files/' + filename, next
+  dataProcessorFile: (filename, data, next) ->
+    return @_api 'get', 'dataprocessors/files/' + filename, data, next
 
   createDataProcessorsFile: (filename, data, next) ->
     return @_api 'post', 'dataprocessors/files/' + filename, data, next
@@ -143,8 +143,8 @@ Sense::=
   updateDataProcessorsFile: (filename, data, next) ->
     return @_api 'put', 'dataprocessors/files/' + filename, data, next
 
-  deleteDataProcessorsFile: (filename, next) ->
-    return @_api 'delete', 'dataprocessors/files/' + filename, next
+  deleteDataProcessorsFile: (filename, data, next) ->
+    return @_api 'delete', 'dataprocessors/files/' + filename, data, next
 
   # D E V I C E S #
   devices: (data, next) ->
@@ -178,7 +178,7 @@ Sense::=
     return @_api 'get', 'environments/' + id + '/sensors', data, next
 
   createEnvironmentSensor: (id, data, next) ->
-    return @_api 'post', 'environments/' + id + '/sensors', data next
+    return @_api 'post', 'environments/' + id + '/sensors', data, next
 
   deleteEnvironmentSensor: (id, sensor, next) ->
     return @_api 'delete', 'environments/', + id + '/sensors/' + sensor, next
@@ -230,117 +230,117 @@ Sense::=
 
   # S E N S O R S #
   sensors: (data, next) ->
-    return @_api "get", "sensors", data, next
+    return @_api 'get', 'sensors', data, next
 
   sensor: (id, data, next) ->
-    return @_api "get", "sensors/" + id, data, next
+    return @_api 'get', 'sensors/' + id, data, next
 
   createSensor: (data, next) ->
-    return @_api "post", "sensors", data, next
+    return @_api 'post', 'sensors', data, next
 
   updateSensor: (id, data, next) ->
-    return @_api "put", "sensors/" + id, data, next
+    return @_api 'put', 'sensors/' + id, data, next
 
   deleteSensor: (id, data, next) ->
-    return @_api "delete", "sensors/" + id, data, next
+    return @_api 'delete', 'sensors/' + id, data, next
 
   sensorsFind: (namespace, data, next) ->
-    return @_api "post", "sensors/find?namespace=" + namespace, data, next
+    return @_api 'post', 'sensors/find?namespace=' + namespace, data, next
 
   # S E N S O R S  &  D A T A #
   sensorData: (id, data, next) ->
-    return @_api "get", "sensors/" + id + "/data", data, next
+    return @_api 'get', 'sensors/' + id + '/data', data, next
 
   createSensorData: (id, data, next) ->
-    return @_api "post", "sensors/" + id + "/data", data, next
+    return @_api 'post', 'sensors/' + id + '/data', data, next
 
   createSensorsData: (data, next) ->
-    return @_api "post", "sensors/data", data, next
+    return @_api 'post', 'sensors/data', data, next
 
   deleteSensorData: (id, data_id, data, next) ->
-    return @_api "delete", "sensors/" + id + "/data/" + data_id , next
+    return @_api 'delete', 'sensors/' + id + '/data/' + data_id, next
 
 
   # S E N S O R S  &  E N V I R O N M E N T S #
   sensorEnvironments: (id, data, next) ->
-    return @_api "get", "sensors/" + id + "/environment", next
+    return @_api 'get', 'sensors/' + id + '/environment', data, next
 
 
   # S E N S O R S  &  D E V I C E S #
   sensorDevice: (id, data, next) ->
-    return @_api "get", "sensors/" + id + "/device", next
+    return @_api 'get', 'sensors/' + id + '/device', data, next
 
   createSensorDevice: (id, data, next) ->
-    return @_api "post", "sensors/" + id + "/device", data, next
+    return @_api 'post', 'sensors/' + id + '/device', data, next
 
   deleteSensorDevice: (id, data, next) ->
-    return @_api "delete", "sensors/" + id + "/device", next
+    return @_api 'delete', 'sensors/' + id + '/device', data, next
 
 
   # S E N S O R S  &  S E R V I C E S #
   sensorsAvailableServices: (data, next) ->
-    return @_api "get", "sensors/services/available", next
+    return @_api 'get', 'sensors/services/available', data, next
 
   sensorRunningServices: (id, data, next) ->
-    return @_api "get", "sensors/" + id + "/services", next
+    return @_api 'get', 'sensors/' + id + '/services', data, next
 
   sensorAvailableServices: (id, data, next) ->
-    return @_api "get", "sensors/" + id + "/services/available", next
+    return @_api 'get', 'sensors/' + id + '/services/available', data, next
 
   createSensorService: (id, data, next) ->
-    return @_api "post", "sensors/" + id + "/services", data, next
+    return @_api 'post', 'sensors/' + id + '/services', data, next
 
   deleteSensorService: (id, service, next) ->
-    return @_api "delete", "sensors/" + id + "/services/" + service , next
+    return @_api 'delete', 'sensors/' + id + '/services/' + service, next
 
   sensorServiceMethods: (id, service, next) ->
-    return @_api "get", "sensors/" + id + "/services/" + service + "/methods", next
+    return @_api 'get', 'sensors/' + id + '/services/' + service + '/methods', data, next
 
   sensorServiceLearn: (id, service, data, next) ->
-    return @_api "post", "sensors/" + id + "/services/" + service + "/manualLearn", data, next
+    return @_api 'post', 'sensors/' + id + '/services/' + service + '/manualLearn', data, next
 
   sensorServiceMethod: (id, service, method, next) ->
-    return @_api "get", "sensors/" + id + "/services/" + service + "/" + method , next
+    return @_api 'get', 'sensors/' + id + '/services/' + service + '/' + method, next
 
   createSensorServiceMethod: (id, service, method, data, next) ->
-    return @_api "post", "sensors/" + id + "/services/" + service + "/" + method , data, next
+    return @_api 'post', 'sensors/' + id + '/services/' + service + '/' + method, data, next
 
 
   # M E T A T A G S #
   sensorsMetatags: (data, next) ->
-    return @_api "get", "sensors/metatags", next
+    return @_api 'get', 'sensors/metatags', data, next
 
   sensorMetatags: (id, data, next) ->
-    return @_api "get", "sensors/" + id + "/metatags", next
+    return @_api 'get', 'sensors/' + id + '/metatags', data, next
 
   createSensorMetatags: (id, data, next) ->
-    return @_api "post", "sensors/" + id + "/metatags", data, next
+    return @_api 'post', 'sensors/' + id + '/metatags', data, next
 
   updateSensorMetatags: (id, data, next) ->
-    return @_api "put", "sensors/" + id + "/metatags", data, next
+    return @_api 'put', 'sensors/' + id + '/metatags', data, next
 
   deleteSensorMetaTags: (id, data, next) ->
-    return @_api "delete", "sensors/" + id + "/metatags", next
+    return @_api 'delete', 'sensors/' + id + '/metatags', data, next
 
 
   # U S E R S #
   currentUser: (data, next) ->
-    return @_api "get", "users/current", next
+    return @_api 'get', 'users/current', data, next
 
   users: (data, next) ->
-    return @_api "get", "users", next
+    return @_api 'get', 'users', data, next
 
   user: (id, data, next) ->
-    return @_api "get", "users/" + id, data, next
+    return @_api 'get', 'users/' + id, data, next
 
   createUser: (data, next) ->
-    return @_api "post", "users", next
+    return @_api 'post', 'users', data, next
 
   updateUser: (id, data, next) ->
-    return @_api "put", "users/" + id, data, next
+    return @_api 'put', 'users/' + id, data, next
 
   deleteUser: (id, data, next) ->
-    return @_api "delete", "users/" + id , next
+    return @_api 'delete', 'users/' + id, data, next
 
 
 if typeof module is 'undefined'
