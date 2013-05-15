@@ -55,18 +55,18 @@ The `data` argument is an optional object of headers.
   deleteSession: ([data], next) ->
 
   # D A T A P R O C E S S O R S #
-  [data]Processors: ([data], next) ->
-  [data]Processor: (id, [data], next) ->
-  create[data]Processor: ([data], next) ->
-  update[data]Processor: (id, [data], next) ->
-  delete[data]Processor: (id, [data], next) ->
+  dataProcessors: ([data], next) ->
+  dataProcessor: (id, [data], next) ->
+  createDataProcessor: ([data], next) ->
+  updateDataProcessor: (id, [data], next) ->
+  deleteDataProcessor: (id, [data], next) ->
 
   # D A T A  P R O C E S S O R S  &  F I L E S #
-  [data]ProcessorsFiles: ([data], next) ->
-  [data]ProcessorFile: (filename, [data], next) ->
-  create[data]ProcessorsFile: (filename, [data], next) ->
-  update[data]ProcessorsFile: (filename, [data], next) ->
-  delete[data]ProcessorsFile: (filename, [data], next) ->
+  dataProcessorsFiles: ([data], next) ->
+  dataProcessorFile: (filename, [data], next) ->
+  createDataProcessorsFile: (filename, [data], next) ->
+  updateDataProcessorsFile: (filename, [data], next) ->
+  deleteDataProcessorsFile: (filename, [data], next) ->
 
   # D E V I C E S #
   devices: ([data], next) ->
@@ -115,14 +115,13 @@ The `data` argument is an optional object of headers.
   sensorsFind: (namespace, [data], next) ->
 
   # S E N S O R S  &  D A T A #
-  sensordata: (id, [data], next) ->
-  createSensordata: (id, [data], next) ->
-  createSensorsdata: ([data], next) ->
-  deleteSensordata: (id, [data]_id, [data], next) ->
+  sensorData: (id, [data], next) ->
+  createSensorData: (id, [data], next) ->
+  createSensorsData: ([data], next) ->
+  deleteSensorData: (id, data_id, [data], next) ->
 
   # S E N S O R S  &  E N V I R O N M E N T S #
   sensorEnvironments: (id, [data], next) ->
-
   # S E N S O R S  &  D E V I C E S #
   sensorDevice: (id, [data], next) ->
   createSensorDevice: (id, [data], next) ->
