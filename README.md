@@ -115,13 +115,14 @@ The `data` argument is an optional object of headers.
   sensorsFind: (namespace, [data], next) ->
 
   # S E N S O R S  &  D A T A #
-  sensor[data]: (id, [data], next) ->
-  createSensor[data]: (id, [data], next) ->
-  createSensors[data]: ([data], next) ->
-  deleteSensor[data]: (id, [data]_id, [data], next) ->
+  sensordata: (id, [data], next) ->
+  createSensordata: (id, [data], next) ->
+  createSensorsdata: ([data], next) ->
+  deleteSensordata: (id, [data]_id, [data], next) ->
 
   # S E N S O R S  &  E N V I R O N M E N T S #
   sensorEnvironments: (id, [data], next) ->
+
   # S E N S O R S  &  D E V I C E S #
   sensorDevice: (id, [data], next) ->
   createSensorDevice: (id, [data], next) ->
