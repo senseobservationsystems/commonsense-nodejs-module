@@ -3,10 +3,22 @@ class Sense
   constructor: (@session_id = '') ->
     @api_url = 'https://api.sense-os.nl'
 
+  # H E L P E R  M E T H O D S #
+
+  # Get the optimal allowed interval to receive the data between timestamps
+  @optimalInterval: (start, end, amount = 1000) ->
+    intervals = [604800, 86500, 3600, 1800, 600, 300, 60]
+
+    range = end - start;
+    preferred_interval = range / amount
+
+    for interval in intervals.reverse()
+      return interval if interval >= preferred_interval
+    return intervals[intervals.length-1]
+
 # Build on prototype for speed and memory performance
 Sense::=
   available_methods: ['GET', 'POST', 'DELETE', 'PUT']
-
 
   _getRequestObject: () ->
     if window? and window.XMLHttpRequest?
@@ -22,7 +34,6 @@ Sense::=
 
     XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
     return new XMLHttpRequest()
-
 
   _api: (method, path, data, next) ->
 
@@ -93,7 +104,7 @@ Sense::=
     return xhr
 
 
-  # CONFIGURATION #
+  # C O N F I G U R A T I O N #
   setServer: (s = 'live') ->
     @api_url = switch s
       when 'live' then 'https://api.sense-os.nl'
@@ -104,7 +115,7 @@ Sense::=
     return @api_url
 
   #
-  # A P I C A L L S
+  # A P I  C A L L S
   #
 
   # A U T H E N T I C A T I O N #

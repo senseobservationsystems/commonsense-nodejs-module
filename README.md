@@ -50,6 +50,9 @@ The callback is of the form `next(err, response)`.
 The `data` argument is an optional object of headers.
 
 ```coffeescript
+  # H E L P E R  M E T H O D S #
+  optimalInterval: (start, end, amount = 1000) ->
+
   # A U T H E N T I C A T I O N #
   createSession: (u, p, next) ->
   deleteSession: ([ data, ] next) ->
