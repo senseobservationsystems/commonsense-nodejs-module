@@ -41,6 +41,12 @@ When available in your project, the following is a typical beginning of a usecas
 
 Please look at the [examples](examples) for embedding in a [Node.js application](examples/simple.coffee) or a [browser script](examples/simple.html).
 
+## Example projects
+This is a list of public example projects which use this library:
+
+- [Secare](http://secare.herokuapp.com) ([GitHub repo](https://github.com/rvlasveld/secare)): An online segmentation tool for data from the CommonSense platform.
+- [Powerhouse](http://sensepowerhouse.herokuapp.com) ([GitHub repo](https://github.com/josvhd/sensepower)): Model-Predictive-Control (MPC) of electronic devices hooked up to the CommonSense platform.
+
 ## API calls
 
 The following api calls on the Sense object are implemented.
