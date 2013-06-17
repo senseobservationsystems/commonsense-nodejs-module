@@ -45,7 +45,7 @@ Please look at the [examples](examples) for embedding in a [Node.js application]
 This is a list of public example projects which use this library:
 
 - [Secare](http://secare.herokuapp.com) ([GitHub repo](https://github.com/rvlasveld/secare)): An online segmentation tool for data from the CommonSense platform.
-- [Powerhouse](http://sensepowerhouse.herokuapp.com) ([GitHub repo](https://github.com/josvhd/sensepower)): Model-Predictive-Control (MPC) of electronic devices hooked up to the CommonSense platform.
+- [Sense Power](http://sensepower.herokuapp.com) ([GitHub repo](https://github.com/josvhd/sensepower)): Model-Predictive-Control (MPC) of electronic devices hooked up to the CommonSense platform.
 
 ## API calls
 
