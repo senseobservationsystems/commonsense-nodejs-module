@@ -258,6 +258,48 @@ Sense::=
   sensorsFind: (namespace, data, next) ->
     return @_api 'post', 'sensors/find?namespace=' + namespace, data, next
 
+  findOrCreateSensor: (sensor, next) ->
+    self = @
+    per_page = 1000
+    findSensor = (page, cb)->
+      self.sensors {page: page, per_page: per_page}, (error, response)->
+        if response.status == 200
+          data = JSON.parse(response.data)
+          sensors = data.sensors
+          found = false
+
+          for c in sensors
+            same = true
+
+            for attr in ['name', 'display_name','device_type', 'pager_type', 'data_type', 'data_structure']
+              if sensor[attr] && sensor[attr] != c[attr]
+                same = false
+                break
+            if same
+              found = true
+              break
+
+          if found
+            cb(c)
+          else
+            if sensors.length == per_page
+              findSensor(page+1, cb)
+            else
+              cb(null)
+
+        if response.status == 409 || response.status == 509
+          setTimeout ->
+            findSensor(page, cb)
+          , 60000
+
+    findSensor 0, (sensorResult)->
+      if sensorResult == null
+        self.createSensor {"sensor": sensor}, (error, response)->
+          if response.status == 201
+            next response.object.sensor
+      else
+        next(sensorResult)
+
   # S E N S O R S  &  D A T A #
   sensorData: (id, data, next) ->
     return @_api 'get', 'sensors/' + id + '/data', data, next
