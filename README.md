@@ -122,6 +122,7 @@ The `data` argument is an optional object of headers.
   updateSensor: (id, [ data, ] next) ->
   deleteSensor: (id, [ data, ] next) ->
   sensorsFind: (namespace, [ data, ] next) ->
+  findOrCreateSensor: (sensor, next) ->
 
   # S E N S O R S  &  D A T A #
   sensorData: (id, [ data, ] next) ->

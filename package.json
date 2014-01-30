@@ -1,8 +1,12 @@
 {
-  "author": "Roemer Vlasveld <roemer@almende.org> (http://www.almende.org)",
+  "author": "Sense Observation Systems <info@sense-os.nl> (http://www.sense-os.nl)",
+  "contributors": [
+    "Roemer Vlasveld <roemer.vlasveld@gmail.com> (http://rvlasveld.github.io)",
+    "Ahmy yulrizka <ahmy@sense-os.nl> (http://www.sense-os.nl)"
+  ],
   "name": "commonsense",
   "description": "Commonsense client API",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "keywords": ["commonsense", "sense", "api", "client"],
   "repository": {
     "type": "git",
