@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/senseobservationsystems/commonsense-nodejs-module.png?branch=master)](https://travis-ci.org/https://travis-ci.org/senseobservationsystems/commonsense-nodejs-module)
+[![Build Status](https://travis-ci.org/senseobservationsystems/commonsense-nodejs-module.png?branch=master)](https://travis-ci.org/senseobservationsystems/commonsense-nodejs-module)
 
 *This module is under heavy development.*
 
