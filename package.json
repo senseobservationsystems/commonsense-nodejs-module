@@ -11,7 +11,7 @@
   "main": "lib/commonsense.js",
   "scripts": {
     "prepublish": "coffee --compile --output lib/ src/*.coffee",
-    "test": "mocha --compilers coffee:coffee-script --require should --reporter spec"
+    "test": "mocha --compilers coffee:coffee-script/register --require should --reporter spec"
   },
   "engines": {
     "node": ">= 0.10.0"
